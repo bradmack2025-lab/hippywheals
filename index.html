@@ -12,16 +12,27 @@ html, body {
     width: 100%;
     height: 100%;
     background: #000;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
 }
 
 #ruffle-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#player-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 </style>
 </head>
@@ -36,18 +47,18 @@ const ruffle = window.RufflePlayer.newest();
 const player = ruffle.createPlayer();
 container.appendChild(player);
 
-// Load your SWF
+// Load the SWF
 player.load("HappyWheels.swf");
 
 function resizeGame() {
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
-    const aspectRatio = 3 / 2; // 3:2 aspect ratio
+    const aspectRatio = 16 / 9; // desired aspect ratio
 
     let width = windowWidth;
     let height = windowWidth / aspectRatio;
 
-    if (height > windowHeight) {
+    if (height < windowHeight) {
         height = windowHeight;
         width = height * aspectRatio;
     }
@@ -59,7 +70,7 @@ function resizeGame() {
 window.addEventListener("resize", resizeGame);
 window.addEventListener("load", resizeGame);
 
-// Optional: click anywhere to go fullscreen
+// Click anywhere to fullscreen
 document.body.addEventListener("click", () => {
     if (document.fullscreenEnabled && !document.fullscreenElement) {
         document.documentElement.requestFullscreen();
