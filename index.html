@@ -9,14 +9,22 @@
     html, body {
         margin: 0;
         padding: 0;
+        width: 100%;
         height: 100%;
         overflow: hidden;
         background: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
+
     #ruffle-container {
         width: 100%;
         height: 100%;
+        max-width: 100%;
+        max-height: 100%;
     }
+
     #ruffle-container > object {
         width: 100%;
         height: 100%;
@@ -25,11 +33,34 @@
 </head>
 <body>
 <div id="ruffle-container"></div>
+
 <script>
-    const ruffle = window.RufflePlayer.newest();
-    const player = ruffle.createPlayer();
-    document.getElementById("ruffle-container").appendChild(player);
-    player.load("HappyWheels.swf"); // relative path
+const container = document.getElementById('ruffle-container');
+const ruffle = window.RufflePlayer.newest();
+const player = ruffle.createPlayer();
+container.appendChild(player);
+
+function resizeGame() {
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    const aspectRatio = 16 / 9;
+
+    let width = windowWidth;
+    let height = windowWidth / aspectRatio;
+
+    if (height > windowHeight) {
+        height = windowHeight;
+        width = height * aspectRatio;
+    }
+
+    player.style.width = width + "px";
+    player.style.height = height + "px";
+}
+
+player.load("HappyWheels.swf");
+
+window.addEventListener('resize', resizeGame);
+window.addEventListener('load', resizeGame);
 </script>
 </body>
 </html>
