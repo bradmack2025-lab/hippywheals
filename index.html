@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Wheels</title>
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+</head>
+<body>
+    <h2>Happy Wheels</h2>
+    <div id="ruffle-container"></div>
+    <script>
+        const ruffle = window.RufflePlayer.newest();
+        const player = ruffle.createPlayer();
+        document.getElementById("ruffle-container").appendChild(player);
+        player.load("https://bradmack2025-lab.github.io/hippywheals/HappyWheels.swf");
+    </script>
+</body>
+</html>
