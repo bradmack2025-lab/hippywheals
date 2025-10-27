@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Wheels</title>
-    <!-- Ruffle Player -->
-    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Wheels</title>
+<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+        background: #000;
+    }
+    #ruffle-container {
+        width: 100%;
+        height: 100%;
+    }
+    #ruffle-container > object {
+        width: 100%;
+        height: 100%;
+    }
+</style>
 </head>
 <body>
-    <h1>Happy Wheels</h1>
-    <div id="ruffle-container"></div>
-
-    <script>
-        // Initialize Ruffle
-        const ruffle = window.RufflePlayer.newest();
-        const player = ruffle.createPlayer();
-        document.getElementById("ruffle-container").appendChild(player);
-
-        // Load your SWF from GitHub raw link
-        player.load("HappyWheels.swf"); // relative path
-    </script>
+<div id="ruffle-container"></div>
+<script>
+    const ruffle = window.RufflePlayer.newest();
+    const player = ruffle.createPlayer();
+    document.getElementById("ruffle-container").appendChild(player);
+    player.load("HappyWheels.swf"); // relative path
+</script>
 </body>
 </html>
